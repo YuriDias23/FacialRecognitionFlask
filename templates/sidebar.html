@@ -1,0 +1,25 @@
+<div class="sidebar">
+    <!-- Imagem no topo da sidebar -->
+    <div class="sidebar-logo">
+        <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="ALX Tecnologia" class="logo">
+    </div>
+    
+    <!-- Links de navegação -->
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{ url_for('default_page') }}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('upload') }}"><i class="fas fa-upload"></i> Upload de Fotos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('stream') }}"><i class="fas fa-video"></i> Streaming</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('config') }}"><i class="fas fa-cogs"></i> Configurações</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> Sobre</a>
+        </li>
+    </ul>
+</div>

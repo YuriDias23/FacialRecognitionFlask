@@ -1,0 +1,153 @@
+/* Estilo Global */
+body {
+    background-image: url('/static/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Altura completa da tela */
+    display: flex;
+    font-family: 'Domine', serif;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #0056b3;
+}
+
+.white-text {
+    color: #fefefe;
+}
+
+.blue-text {
+    color: #4323fe;
+}
+.black-text {
+    color: #000000;
+}
+.green-text {
+    color: #5eca0b;
+}
+/* Cartões */
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: #5eca0b !important;
+    border-color: #5eca0b !important;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Estilo para a borda do vídeo */
+img#video-stream {
+    border: 3px solid #00ff1a !important;
+    border-radius: 10px;
+}
+
+/* Estilo da Barra Lateral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #0322bd;
+    color: #fff;
+    padding-top: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo no topo da sidebar */
+.sidebar-logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar-logo .logo {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #ffffff; /* Borda opcional para destaque */
+}
+
+/* Título da Sidebar */
+.sidebar h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+/* Links de Navegação da Sidebar */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%; /* Para que os links ocupem a largura completa */
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #5a02bfdf;
+    border-radius: 5px;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+/* Estilo do Conteúdo Principal */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.press-start-2p-regular {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .overlay-background {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco com 80% de opacidade */
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1000px; /* Limita a largura máxima do conteúdo */
+    text-align: center;
+  }

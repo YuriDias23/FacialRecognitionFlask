@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "redis": "^4.7.0",
+    "retinaface": "^0.0.6"
+  }
+}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center black-text mb-4">Streaming Control:</h1>
+
+    <!-- Mensagem Flash -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-warning">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Formulário para selecionar câmera e webhook -->
+    <form method="POST" action="{{ url_for('stream') }}">
+        <div class="mb-3">
+            <label for="camera_id" class="form-label">Select Camera:</label>
+            <select id="camera_id" name="camera_id" class="form-control">
+                {% for camera in cameras %}
+                    <option value="{{ camera[0] }}">{{ camera[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="webhook_id" class="form-label">Select Webhook:</label>
+            <select id="webhook_id" name="webhook_id" class="form-control">
+                {% for webhook in webhooks %}
+                    <option value="{{ webhook[0] }}">{{ webhook[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Start Streaming</button>
+    </form>
+
+    <!-- Exibição de múltiplos streams -->
+    <div class="row mt-4">
+        {% for camera_id, stream in active_streams.items() %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    {{ stream["camera_name"] }}
+                </div>
+                <div class="card-body text-center">
+                    <img src="/video_feed?camera_id={{ camera_id }}" alt="Streaming Ativo" class="img-fluid border rounded">
+                </div>
+                <div class="card-footer text-center">
+                    <form method="POST" action="{{ url_for('stop_stream') }}">
+                        <input type="hidden" name="camera_id" value="{{ camera_id }}">
+                        <button type="submit" class="btn btn-danger w-100">Stop Streaming</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

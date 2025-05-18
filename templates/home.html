@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-5">
+    <head>
+        <!-- Fontes Personalizadas -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+        <h1 class="black-text text-center text-center">
+            Fill in the Camera RTSP and Webhook Information:
+        </h1>
+        <p></p>
+    </head>
+    <body>
+        <div class="row mt-5">
+            <!-- Primeiro Bloco de Botões -->
+            <div class="col-md-6 mb-4">
+                <div class="overlay-background text-center p-4 rounded shadow">
+                    <h2 class="black-text text-center">Upload Pictures:</h2>
+                    <button type="button" onclick="window.location.href='{{ url_for('upload') }}'" class="btn btn-primary w-100 mt-3">
+                        <i class="bi bi-images"></i> Show Database
+                    </button>
+                </div>
+            </div>
+            <!-- Segundo Bloco de Botões -->
+            <div class="col-md-6 mb-4">
+                <div class="overlay-background text-center p-4 rounded shadow">
+                    <h2 class="black-text text-center">Start Facial Analyzis(Streaming):</h2>
+                    <button type="button" onclick="window.location.href='{{ url_for('stream') }}'" class="btn btn-primary w-100 mt-3">
+                        <i class="fas fa-video"></i> Start Stream
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="overlay-background text-center p-4 rounded shadow">
+                    <h2 class="black-text text-center">Register RTSPs and Webhooks:</h2>
+                    <button type="button" onclick="window.location.href='{{ url_for('config') }}'" class="btn btn-primary w-100 mt-3">
+                        <i class="bi bi-gear-fill"></i> Submit Info
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+</div>
+
+{% endblock %}

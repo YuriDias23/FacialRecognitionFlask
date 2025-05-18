@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-5">
+    <h1 class="text-center black-text mb-4">Cameras and Webhooks Registration</h1>
+
+    <div class="row">
+        <!-- Formulário para Cadastro de Câmeras -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow p-4">
+                <h2 class="text-center black-text">Register RTSP</h2>
+                <form method="POST" action="{{ url_for('config') }}">
+                    <input type="hidden" name="form_type" value="camera">
+                    <div class="mb-3">
+                        <label for="camera_name" class="form-label black-text">RTSP'S Nickname </label>
+                        <input type="text" id="camera_name" name="camera_name" placeholder="Ex: Câmera da Frente" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="camera_username" class="form-label black-text">User</label>
+                        <input type="text" id="camera_username" name="camera_username" placeholder="Ex: admin" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="camera_password" class="form-label black-text">Password</label>
+                        <input type="password" id="camera_password" name="camera_password" placeholder="Ex: password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="camera_url" class="form-label black-text">RTSP URL</label>
+                        <input type="text" id="camera_url" name="camera_url" placeholder="Ex: 192.168.88.111:554 (colocar porta)" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 black-text">Submit RTSP</button>
+                </form>
+            </div>
+        </div>
+        <!-- Formulário para Cadastro de Webhooks -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow p-4">
+                <h2 class="text-center black-text">Register Webhook</h2>
+                <form method="POST" action="{{ url_for('config') }}">
+                    <input type="hidden" name="form_type" value="webhook">
+                    <div class="mb-3">
+                        <label for="webhook_name" class="form-label black-text">Webhook Nickname</label>
+                        <input type="text" id="webhook_name" name="webhook_name" placeholder="Ex: Home Assistant 1" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="webhook_url" class="form-label black-text">Webhook URL</label>
+                        <input type="text" id="webhook_url" name="webhook_url" placeholder="Ex: http://192.168.88.159:90/api/webhook/testefacial" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 black-text">Submit Webhook</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow p-4">
+                <h2 class="text-center black-text">Delete Camera</h2>
+                <select id="camera-list" class="form-select mb-3">
+                    <option value="" disabled selected>Select camera</option>
+                    {% for camera in cameras %}
+                        <option value="{{ camera[0] }}">{{ camera[1] }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary" onclick="editCamera()">Edit</button>
+                <p></p>
+                <button class="btn btn-danger btn-sm" onclick="deleteCamera()">Delete</button>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card shadow p-4">
+                <h2 class="text-center black-text">Delete Webhook</h2>
+                <select id="webhook-list" class="form-select mb-3">
+                    <option value="" disabled selected>Select webhook</option>
+                    {% for webhook in webhooks %}
+                        <option value="{{ webhook[0] }}">{{ webhook[1] }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-primary" onclick="editWebhook()">Edit</button>
+                <p></p>
+                <button class="btn btn-danger" onclick="deleteWebhook()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exibir mensagens de sucesso -->
+    <div class="mt-4">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
+
+{% endblock %}

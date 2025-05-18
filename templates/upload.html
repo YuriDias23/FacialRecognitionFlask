@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 black-text">Pictures Upload:</h1>
+
+    <!-- Formulário de Upload de Foto -->
+    <div class="card shadow p-4 mb-5 bg-body rounded">
+        <form method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">Select a Picture</label>
+                <input type="file" name="file" id="file" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+        <p class="mt-3">{{ get_flashed_messages() }}</p>
+    </div>
+
+    <!-- Lista de Fotos Cadastradas -->
+    <h2 class="text-center mb-4 black-text">Database:</h2>
+    <div class="row">
+        {% for photo in photos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <!-- Imagem com classe de tamanho padronizado -->
+                <img src="{{ url_for('static', filename='uploads/' + photo['name']) }}" class="card-img-top thumbnail" alt="{{ photo['name'] }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ photo['name'] }}</h5>
+                    <form action="{{ url_for('delete_photo', photo_id=photo['id']) }}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
